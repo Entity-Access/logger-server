@@ -1,0 +1,16 @@
+{
+  "name": "logger-server",
+  "version": "1.0.0",
+  "description": "Simple Logger Server with Entity Access",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@entity-access/entity-access": "^1.0.240",
+    "@entity-access/server-pages": "^1.0.7"
+  }
+}
