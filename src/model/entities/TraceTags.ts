@@ -2,26 +2,26 @@ import Column from "@entity-access/entity-access/dist/decorators/Column.js";
 import Table from "@entity-access/entity-access/dist/decorators/Table.js";
 import { RelateTo } from "@entity-access/entity-access/dist/decorators/Relate.js";
 import Tag from "./Tag.js";
-import LogItem from "./LogItem.js";
+import Trace from "./Trace.js";
 
-@Table("LogTags")
-export default class LogTag {
+@Table("TraceTags")
+export default class TraceTag {
 
     @Column({ dataType: "BigInt", key: true })
-    @RelateTo(LogItem, {
-        property: (x) => x.logItem,
-        inverseProperty: (x) => x.logTags
+    @RelateTo(Trace, {
+        property: (x) => x.trace,
+        inverseProperty: (x) => x.traceTags
     })
-    public logItemID: number;
+    public traceID: number;
 
     @Column({ dataType: "BigInt", key: true })
     @RelateTo(Tag, {
         property: (x) => x.tag,
-        inverseProperty: (x) => x.logTags
+        inverseProperty: (x) => x.traceTags
     })
     public tagID: number;
 
     public tag: Tag;
 
-    public logItem: LogItem;
+    public trace: Trace;
 }

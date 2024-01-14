@@ -1,0 +1,1 @@
+export const isTestMode = (process.env.LOGGER_SERVER ?? "false") === "true";

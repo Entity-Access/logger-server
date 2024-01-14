@@ -1,2 +1,4 @@
-import WebServer from "./dist/WebServer";
+import WebCluster from "./dist/WebCluster";
 
+
+WebCluster.start();

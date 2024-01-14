@@ -1,19 +1,19 @@
 import DateTime from "@entity-access/entity-access/dist/types/DateTime.js";
 import Table from "@entity-access/entity-access/dist/decorators/Table.js";
 import Column from "@entity-access/entity-access/dist/decorators/Column.js";
-import type LogTag from "./LogTags.js";
+import type TraceTag from "./TraceTags.js";
 
-@Table("LogItems")
-export default class LogItem {
+@Table("Traces")
+export default class Trace {
 
     @Column({ dataType: "BigInt", generated: "identity", key: true })
-    public itemID: number;
+    public traceID: number;
 
     @Column({})
     public dateCreated: DateTime;
 
 
-    public logTags: LogTag[];
+    public traceTags: TraceTag[];
 
 
 }

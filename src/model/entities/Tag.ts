@@ -1,7 +1,8 @@
 import Column from "@entity-access/entity-access/dist/decorators/Column.js";
 import Table from "@entity-access/entity-access/dist/decorators/Table.js";
 import Index from "@entity-access/entity-access/dist/decorators/Index.js";
-import type LogTag from "./LogTags.js";
+import type TraceTag from "./TraceTags.js";
+import { RelateTo } from "@entity-access/entity-access/dist/decorators/Relate.js";
 
 @Table("Tags")
 @Index({
@@ -19,6 +20,16 @@ export default class Tag {
     @Column({ dataType: "Char", length: 200 })
     public name: string;
 
-    public logTags: LogTag[];
+    @Column({ dataType: "BigInt", nullable: true})
+    @RelateTo(Tag, {
+        property: (x) => x.parent,
+        inverseProperty: (x) => x.children
+    })
+    public parentID: number;
 
+    public parent: Tag;
+
+    public children: Tag[];
+
+    public traceTags: TraceTag[];
 }
