@@ -1,9 +1,9 @@
 import Column from "@entity-access/entity-access/dist/decorators/Column.js";
 import ForeignKey from "@entity-access/entity-access/dist/decorators/ForeignKey.js";
 import { UserRoleType } from "./UserRoleType.js";
-import User from "./User.js";
 import Table from "@entity-access/entity-access/dist/decorators/Table.js";
 import { RelateTo } from "@entity-access/entity-access/dist/decorators/Relate.js";
+import { User } from "./User.js";
 
 @Table("UserRoles")
 export class UserRole {
