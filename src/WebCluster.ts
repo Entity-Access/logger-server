@@ -38,8 +38,8 @@ export default class WebCluster extends ClusterInstance<typeof WebServer> {
 
     protected async runWorker(arg: typeof WebServer) {
         console.log(`Worker started`);
-        // const ws = new arg();
-        // await ws.create();
+        const ws = new arg();
+        await ws.create();
     }
 
 }

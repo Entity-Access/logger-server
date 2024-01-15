@@ -10,6 +10,8 @@ import seed from "./seed/seed.js";
 import { globalEnv } from "./globalEnv.js";
 import SocketService from "@entity-access/server-pages/dist/socket/SocketService.js";
 import AppSocketService from "./socket/SocketService.js";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
 
 export default class WebServer {
@@ -42,6 +44,7 @@ export default class WebServer {
 
         const server = ServerPages.create(globalServices);
         server.registerEntityRoutes();
+        server.registerRoutes(join(dirname(fileURLToPath(import.meta.url)), "./routes"));
 
         await server.build(void 0, { port: globalEnv.port});
     }

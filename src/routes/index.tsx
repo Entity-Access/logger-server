@@ -30,8 +30,8 @@ export default class extends Page {
 
         const uiVersion = this.query?.["ui-version"] ?? uiPackage.version;
 
-        // const packageRoot = `https://www.unpkg.com/${uiPackage.package}@${uiVersion}`;
-        const packageRoot = `https://cdn.jsdelivr.net/npm/${uiPackage.package}@${uiVersion}`;
+        // const packageRoot = `https://cdn.jsdelivr.net/npm/${uiPackage.package}@${uiVersion}`;
+        const packageRoot = `https://unpkg.com/${uiPackage.package}@${uiVersion}`;
 
         const serverPackage = process.env.npm_package_name;
         const serverPackageVersion = process.env.npm_package_version;
@@ -51,7 +51,7 @@ export default class extends Page {
             <head>
                 <meta charset="utf-8"/>
                 <meta name="viewport" content="width=device-width, shrink-to-fit=YES, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-                <title>Social Mail</title>
+                <title>Tracer</title>
                 <script>
                     var moduleInfo = {moduleInfo};
                 </script>
