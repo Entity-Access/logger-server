@@ -14,7 +14,7 @@ import AppSocketService from "./socket/SocketService.js";
 
 export default class WebServer {
 
-    async create(seedDb = false) {
+    async create(seedDb = false, runServer = false) {
 
         const dbServer = (process.env["TRACER_DB_SERVER"] ?? "postgres").toLowerCase();
         if (dbServer !== "postgres") {
@@ -35,10 +35,12 @@ export default class WebServer {
 
         if (seedDb) {
             await seed();
-            return;
+            if (!runServer) {
+                return;
+            }
         }
 
-        const server = ServerPages.create();
+        const server = ServerPages.create(globalServices);
         server.registerEntityRoutes();
 
         await server.build(void 0, { port: globalEnv.port});
