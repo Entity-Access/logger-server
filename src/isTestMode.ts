@@ -1,1 +1,3 @@
-export const isTestMode = (process.env.LOGGER_SERVER ?? "false") === "true";
+import { globalEnv } from "./globalEnv.js";
+
+export const isTestMode = globalEnv.isTestMode;

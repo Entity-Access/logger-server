@@ -12,7 +12,7 @@ import { globalEnv } from "./globalEnv.js";
 
 export default class WebServer {
 
-    async create(seedDb = true) {
+    async create(seedDb = false) {
 
         const dbServer = (process.env["TRACER_DB_SERVER"] ?? "postgres").toLowerCase();
         if (dbServer !== "postgres") {

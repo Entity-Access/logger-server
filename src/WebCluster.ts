@@ -1,13 +1,9 @@
 import ClusterInstance, { RecycledWorker } from "@entity-access/server-pages/dist/ClusterInstance.js";
-import { isTestMode } from "./isTestMode.js";
-import { availableParallelism } from "node:os";
 import sleep from "@entity-access/server-pages/dist/sleep.js";
 import WebServer from "./WebServer.js";
+import { globalEnv } from "./globalEnv.js";
 
-const numCPUs = isTestMode ? 2
-    : (process.env.TRACER_CLUSTER_WORKERS
-        ? Number(process.env.LOGGER_CLUSTER_WORKERS)
-        : availableParallelism());
+const numCPUs = globalEnv.numCPUs;
 
 export default class WebCluster extends ClusterInstance<typeof WebServer> {
 
@@ -24,6 +20,7 @@ export default class WebCluster extends ClusterInstance<typeof WebServer> {
 
         while(true) {
             const workers = [] as RecycledWorker[];
+            console.log(`Creating cluster ${numCPUs} workers`);
             for (let index = 0; index < numCPUs; index++) {
                 workers.push(this.fork());
             }
@@ -32,7 +29,10 @@ export default class WebCluster extends ClusterInstance<typeof WebServer> {
                 worker.destroy();
             }
 
-            await sleep(15000);
+            // sleep for 30 days
+            for (let index = 0; index < 30; index++) {
+                await sleep(24*60*60*1000);
+            }
         }
     }
 
