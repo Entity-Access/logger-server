@@ -20,7 +20,7 @@ export default class WebCluster extends ClusterInstance<typeof WebServer> {
 
         // seed...
         const ws = new arg();
-        await ws.seed();        
+        await ws.create(true);
 
         while(true) {
             const workers = [] as RecycledWorker[];

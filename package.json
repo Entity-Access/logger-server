@@ -5,13 +5,17 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --enable-source-maps ./index.js",
+    "debug": "node --enable-source-maps --inspect=0.0.0.0:9229 ./index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@entity-access/entity-access": "^1.0.240",
-    "@entity-access/server-pages": "^1.0.8"
+    "@entity-access/server-pages": "^1.0.10",
+    "pg": "^8.11.1",
+    "pg-cursor": "^2.10.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.0"
