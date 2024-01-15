@@ -25,13 +25,13 @@ export default class WebCluster extends ClusterInstance<typeof WebServer> {
                 workers.push(this.fork());
             }
 
-            for (const worker of workers) {
-                worker.destroy();
-            }
-
             // sleep for 30 days
             for (let index = 0; index < 30; index++) {
                 await sleep(24*60*60*1000);
+            }
+
+            for (const worker of workers) {
+                worker.destroy();
             }
         }
     }

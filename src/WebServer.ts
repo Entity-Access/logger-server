@@ -8,6 +8,8 @@ import AppDbContext from "./model/AppDbContext.js";
 import PostgreSqlDriver from "@entity-access/entity-access/dist/drivers/postgres/PostgreSqlDriver.js";
 import seed from "./seed/seed.js";
 import { globalEnv } from "./globalEnv.js";
+import SocketService from "@entity-access/server-pages/dist/socket/SocketService.js";
+import AppSocketService from "./socket/SocketService.js";
 
 
 export default class WebServer {
@@ -20,12 +22,7 @@ export default class WebServer {
         }
 
         const driver = new PostgreSqlDriver({
-            host: process.env["TRACER_DB_HOST"] ?? "localhost",
-            port: Number(process.env["TRACER_DB_PORT"] ?? 5432),
-            ssl: JSON.parse(process.env["TRACER_DB_SSL"] ?? "true"),
-            database: process.env["TRACER_DB_DATABASE"] ?? "Tracer",
-            user: process.env["TRACER_DB_USER"] ?? "postgres",
-            password: process.env["TRACER_DB_PASSWORD"] ?? "abcd123",
+            ... globalEnv.db,
             /** Since we are going to use cluster, a single worker should not hold more than 10 connections */
             poolSize: 10
         });
@@ -44,16 +41,11 @@ export default class WebServer {
         const server = ServerPages.create();
         server.registerEntityRoutes();
 
-        const app = server.build();
-
-        const port = globalEnv.port;
-
-        app.listen(port, () => {
-            console.log(`Server started on port ${port}`);
-        });
+        await server.build(void 0, { port: globalEnv.port});
     }
 
     register() {
+        ServiceCollection.register("Singleton", AppSocketService);
         ServiceCollection.register("Singleton", AppDbContextEvents);
     }
 }

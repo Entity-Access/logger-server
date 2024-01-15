@@ -4,10 +4,10 @@ RUN apk add --no-cache tini
 VOLUME /var/lib/clamav
 VOLUME /data
 WORKDIR /app
+COPY index.js ./
+COPY src ./src
 COPY package*.json ./
 COPY dist ./dist
-COPY src ./src
-COPY index.js ./
 RUN npm install --omit=dev
 ENV HOST 0.0.0.0
 ENV PORT 80
