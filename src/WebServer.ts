@@ -7,6 +7,7 @@ import AppDbContextEvents from "./model/AppDbContextEvents.js";
 import AppDbContext from "./model/AppDbContext.js";
 import PostgreSqlDriver from "@entity-access/entity-access/dist/drivers/postgres/PostgreSqlDriver.js";
 import seed from "./seed/seed.js";
+import { globalEnv } from "./globalEnv.js";
 
 
 export default class WebServer {
@@ -45,7 +46,11 @@ export default class WebServer {
 
         const app = server.build();
 
-        app.listen(process.env.PORT ?? 8080);
+        const port = globalEnv.port;
+
+        app.listen(port, () => {
+            console.log(`Server started on port ${port}`);
+        });
     }
 
     register() {

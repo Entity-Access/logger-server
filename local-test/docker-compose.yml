@@ -1,0 +1,39 @@
+version: '3.4'
+services:
+  postgresdb:
+    image: postgres:16.1-alpine3.19
+    container_name: pg_tracer_server
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=abcd123
+    ports:
+      - 5436:5432
+    networks:
+      - app_network
+  node-hello:
+    image: tracer-local-test
+    depends_on:
+      - postgresdb
+    build:
+      context: ../
+      dockerfile: Test.Dockerfile
+    environment:
+      - TRACER_DB_PORT=5432
+      - TRACER_DB_HOST=postgresdb
+      - TRACER_HOST=localhost
+      - TRACER_AUTH_COOKIE=sm-ta1
+      - TRACER_AUTH_SHARE_COOKIE=sm-sta1
+      - TRACER_SSL_MODE=self-signed
+      - TRACER_SSL_LE_EMAIL=somewhere@somebody.com
+      - TRACER_AUTH_COOKIE_SECURE=true
+      - TRACER_DB_SSL=null
+      - TRACER_PREFIX=test-1-
+      - TRACER_CLUSTER_WORKERS=2
+    networks:
+      - app_network
+    ports:
+      - 80:80
+      - 9229:9229
+networks:
+  app_network:
+    driver: bridge

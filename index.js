@@ -1,4 +1,4 @@
-import WebCluster from "./dist/WebCluster";
+import WebCluster from "./dist/WebCluster.js";
 
 
 WebCluster.start();

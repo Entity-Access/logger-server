@@ -11,9 +11,9 @@ const numCPUs = isTestMode ? 2
 
 export default class WebCluster extends ClusterInstance<typeof WebServer> {
 
-    public static start() {
+    public static start(arg: typeof WebServer = WebServer) {
         const cluster = new WebCluster();
-        cluster.run(void 0);
+        cluster.run(arg);
     }
 
     protected async runPrimary(arg: typeof WebServer) {
@@ -37,6 +37,7 @@ export default class WebCluster extends ClusterInstance<typeof WebServer> {
     }
 
     protected async runWorker(arg: typeof WebServer) {
+        console.log(`Worker started`);
         const ws = new arg();
         await ws.create();
     }
