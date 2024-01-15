@@ -13,9 +13,12 @@
   "license": "ISC",
   "dependencies": {
     "@entity-access/entity-access": "^1.0.240",
-    "@entity-access/server-pages": "^1.0.10",
+    "@entity-access/server-pages": "^1.0.17",
+    "@socket.io/postgres-adapter": "^0.3.1",
+    "@sunknudsen/totp": "^1.1.0",
     "pg": "^8.11.1",
-    "pg-cursor": "^2.10.1"
+    "pg-cursor": "^2.10.1",
+    "qrcode": "^1.5.3"
   },
   "devDependencies": {
     "@types/node": "^20.11.0"

@@ -5,7 +5,7 @@ import sleep from "@entity-access/server-pages/dist/sleep.js";
 import WebServer from "./WebServer.js";
 
 const numCPUs = isTestMode ? 2
-    : (process.env.LOGGGER_CLUSTER_WORKERS
+    : (process.env.TRACER_CLUSTER_WORKERS
         ? Number(process.env.LOGGER_CLUSTER_WORKERS)
         : availableParallelism());
 
