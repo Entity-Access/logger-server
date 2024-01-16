@@ -22,7 +22,7 @@ export default class WebCluster extends ClusterInstance<typeof WebServer> {
             const workers = [] as RecycledWorker[];
             console.log(`Creating cluster ${numCPUs} workers`);
             for (let index = 0; index < numCPUs; index++) {
-                workers.push(this.fork());
+                workers.push(this.fork({ port: 8081 }));
             }
 
             // sleep for 30 days
