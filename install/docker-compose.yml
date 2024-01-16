@@ -1,0 +1,30 @@
+version: '3.4'
+services:
+  postgresdb:
+    image: postgres:16.1-alpine3.19
+    container_name: pg_tracer_server
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=abcd123
+    ports:
+      - 5432:5432
+  node-hello:
+    image: neurospeech/tracer-server:latest
+    container_name: tracer_server
+    restart: unless-stopped
+    depends_on:
+      - postgresdb
+    env_file:
+      - ./vars.env
+    environment:
+      - TRACER_DB_PORT=5432
+      - TRACER_DB_HOST=postgresdb
+      - TRACER_HOST=localhost
+      - TRACER_AUTH_COOKIE=ts-ta1
+      - TRACER_AUTH_SHARE_COOKIE=ts-sta1
+      - TRACER_SSL_MODE=production
+      - TRACER_AUTH_COOKIE_SECURE=true
+      - TRACER_DB_SSL=null
+    ports:
+      - 80:80
+      - 443:443      
