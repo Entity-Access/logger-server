@@ -1,5 +1,5 @@
 {
-  "name": "logger-server",
+  "name": "@entity-access/tracer-server",
   "version": "1.0.6",
   "description": "Simple Logger Server with Entity Access",
   "main": "index.js",
