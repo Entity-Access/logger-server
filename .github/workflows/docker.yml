@@ -29,7 +29,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: "{{defaultContext}}:build"
           push: true
           tags: neurospeech/tracer-server:latest
 
