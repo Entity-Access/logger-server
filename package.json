@@ -1,6 +1,6 @@
 {
   "name": "logger-server",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple Logger Server with Entity Access",
   "main": "index.js",
   "type": "module",
