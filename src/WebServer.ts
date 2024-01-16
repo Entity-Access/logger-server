@@ -46,7 +46,18 @@ export default class WebServer {
         server.registerEntityRoutes();
         server.registerRoutes(join(dirname(fileURLToPath(import.meta.url)), "./routes"));
 
-        await server.build(void 0, { port: globalEnv.port});
+        await server.build({
+            createSocketService: true,
+            port: 443,
+            protocol: "http2",
+            acmeOptions: {
+                mode: globalEnv.isTestMode ? "self-signed" : "production",
+                emailAddress: globalEnv.ssl.emailAddress,
+                endPoint: globalEnv.ssl.acme.endPoint,
+                eabKid: globalEnv.ssl.acme.eabKid,
+                eabHmac: globalEnv.ssl.acme.eabHmac
+            }
+        });
     }
 
     register() {

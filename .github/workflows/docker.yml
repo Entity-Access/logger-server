@@ -1,10 +1,9 @@
 name: Node.js CI
 
-on: push
-
-# on:
-#   schedule:
-#    - cron: '0 0 * * *'
+on: 
+  push: 
+    tags:
+      - '*'
 
 
 # There is a single job in this workflow. It's configured to run on the latest available version of Ubuntu.

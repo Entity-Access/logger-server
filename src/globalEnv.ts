@@ -7,6 +7,14 @@ export const globalEnv = {
     host: process.env.TRACER_HOST,
     port: Number(process.env.PORT ?? 8080),
     isTestMode,
+    ssl: {
+        emailAddress: process.env["TRACER_SSL_LE_EMAIL"] ?? "someone@somewhere",
+        acme: {
+            endPoint: process.env["TRACER_SSL_ACME_EP"],
+            eabKid: process.env["TRACER_SSL_ACME_EAB_KID"],
+            eabHmac: process.env["TRACER_SSL_ACME_EAB_HMAC"],
+        }
+    },
     db: {
         database: process.env["TRACER_DB_DATABASE"] ?? "Tracer",
         host: process.env["TRACER_DB_HOST"] ?? "localhost",
