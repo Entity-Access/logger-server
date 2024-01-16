@@ -109,6 +109,7 @@ export default class LoginSessionEvents extends EntityEvents<LoginSession> {
     async afterInsert(entity: LoginSession, entry: ChangeEntry) {
         if (entity.status !== "created") {
             await this.sessionUser.setAuthCookie({
+                userID: entity.userID,
                 id: entity.sessionID,
                 expiry: entity.expiry,
                 version: "1.1",
@@ -120,6 +121,7 @@ export default class LoginSessionEvents extends EntityEvents<LoginSession> {
         // set the cookie...
         await this.sessionUser.setAuthCookie({
             id: entity.sessionID,
+            userID: entity.userID,
             expiry: entity.expiry,
             version: "1.1",
             active: true
@@ -215,6 +217,7 @@ export default class LoginSessionEvents extends EntityEvents<LoginSession> {
             }
 
             await this.sessionUser.setAuthCookie({
+                userID: entity.userID,
                 id: entity.sessionID,
                 expiry: entity.expiry,
                 version: "1.1",

@@ -30,8 +30,8 @@ export default class extends Page {
 
         const uiVersion = this.query?.["ui-version"] ?? uiPackage.version;
 
-        // const packageRoot = `https://cdn.jsdelivr.net/npm/${uiPackage.package}@${uiVersion}`;
-        const packageRoot = `https://unpkg.com/${uiPackage.package}@${uiVersion}`;
+        // const packageRoot = `https://unpkg.com/${uiPackage.package}@${uiVersion}`;
+        const packageRoot = `https://cdn.jsdelivr.net/npm/${uiPackage.package}@${uiVersion}`;
 
         const serverPackage = process.env.npm_package_name;
         const serverPackageVersion = process.env.npm_package_version;
