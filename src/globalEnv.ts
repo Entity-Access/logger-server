@@ -10,6 +10,7 @@ export const globalEnv = {
     ssl: {
         emailAddress: process.env["TRACER_SSL_LE_EMAIL"] ?? "someone@somewhere",
         acme: {
+            mode: process.env["TRACER_SSL_MODE"] as "self-signed" | "production" | "staging",
             endPoint: process.env["TRACER_SSL_ACME_EP"],
             eabKid: process.env["TRACER_SSL_ACME_EAB_KID"],
             eabHmac: process.env["TRACER_SSL_ACME_EAB_HMAC"],

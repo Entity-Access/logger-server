@@ -52,7 +52,7 @@ export default class WebServer {
             port: 443,
             protocol: "http2",
             acmeOptions: {
-                mode: globalEnv.isTestMode ? "self-signed" : "production",
+                mode: globalEnv.isTestMode ? "self-signed" : globalEnv.ssl.acme.mode,
                 emailAddress: globalEnv.ssl.emailAddress,
                 endPoint: globalEnv.ssl.acme.endPoint,
                 eabKid: globalEnv.ssl.acme.eabKid,

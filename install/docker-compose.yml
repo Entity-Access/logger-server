@@ -19,7 +19,6 @@ services:
     environment:
       - TRACER_DB_PORT=5432
       - TRACER_DB_HOST=postgresdb
-      - TRACER_HOST=localhost
       - TRACER_AUTH_COOKIE=ts-ta1
       - TRACER_AUTH_SHARE_COOKIE=ts-sta1
       - TRACER_SSL_MODE=production
