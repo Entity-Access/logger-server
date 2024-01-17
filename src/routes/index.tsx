@@ -14,7 +14,7 @@ export default class extends Page {
 
     req: any;
 
-    async all({ forceDownload }: any) {
+    async all() {
 
         const file = this.childPath[0];
 
