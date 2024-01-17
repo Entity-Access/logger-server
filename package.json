@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@entity-access/entity-access": "^1.0.240",
-    "@entity-access/server-pages": "^1.0.39",
+    "@entity-access/server-pages": "^1.0.41",
     "@socket.io/postgres-adapter": "^0.3.1",
     "@sunknudsen/totp": "^1.1.0",
     "pg": "^8.11.1",
