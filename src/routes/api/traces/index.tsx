@@ -4,6 +4,7 @@ import AppDbContext from "../../../model/AppDbContext.js";
 import TimedCache from "@entity-access/entity-access/dist/common/cache/TimedCache.js";
 import { globalServices } from "../../../globalServices.js";
 import { Prepare } from "@entity-access/server-pages/dist/decorators/Prepare.js";
+import AppSocketService from "../../../socket/SocketService.js";
 
 const cache = new TimedCache<string,number>();
 
@@ -36,7 +37,7 @@ export default class extends Page {
 
         const { type = "log" } = this.body;
 
-        await db.traces.saveDirect({
+        const { traceID } = await db.traces.saveDirect({
             mode: "insert",
             keys: {},
             changes: {
@@ -46,6 +47,9 @@ export default class extends Page {
                 json: JSON.stringify(this.body)
             }
         });
+
+        const ss = this.resolve(AppSocketService);
+        ss.live.send(sourceID, { traceID });
     }
 
 }
