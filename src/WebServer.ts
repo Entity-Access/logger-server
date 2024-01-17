@@ -47,6 +47,7 @@ export default class WebServer {
         server.registerRoutes(join(dirname(fileURLToPath(import.meta.url)), "./routes"));
 
         await server.build({
+            host: globalEnv.host,
             createSocketService: true,
             port: 443,
             protocol: "http2",
