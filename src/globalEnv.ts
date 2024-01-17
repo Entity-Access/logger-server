@@ -1,7 +1,7 @@
 import { availableParallelism } from "node:os";
 
 
-const isTestMode = (process.env.LOGGER_SERVER ?? "false") === "true";
+const isTestMode = (process.env.LOGGER_SERVER_TEST_MODE ?? "false") === "true";
 
 export const globalEnv = {
     host: process.env.TRACER_HOST,

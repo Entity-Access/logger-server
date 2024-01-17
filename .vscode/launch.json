@@ -22,6 +22,7 @@
                 "TRACER_AV": "null",
                 "TRACER_DB_SSL": "null",
                 "TRACER_TMP_PATH": "d:/temp/t1",
+                "TRACER_SSL_MODE": "self-signed",
                 "PORT": "9090"
             },
             "outFiles": [

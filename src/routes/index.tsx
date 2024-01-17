@@ -6,6 +6,8 @@ import HtmlDocument from "@entity-access/server-pages/dist/html/HtmlDocument.js"
 import WebAtomsLogo from "@entity-access/server-pages/dist/html/WebAtomsLogo.js";
 import XNode from "@entity-access/server-pages/dist/html/XNode.js";
 import { ImagesFolder } from "../ImagesFolder.js";
+import { Prepare } from "@entity-access/server-pages/dist/decorators/Prepare.js";
+
 
 export default class extends Page {
 
@@ -14,7 +16,7 @@ export default class extends Page {
 
     req: any;
 
-    async all() {
+    async run() {
 
         const file = this.childPath[0];
 
