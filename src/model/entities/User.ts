@@ -6,6 +6,7 @@ import Index from "@entity-access/entity-access/dist/decorators/Index.js";
 import DateTime from "@entity-access/entity-access/dist/types/DateTime.js";
 import type UserAuthFactor from "./UserAuthFactor.js";
 import { JsonProperty, IgnoreJsonProperty, ReadOnlyJsonProperty } from "@entity-access/server-pages/dist/services/ModelService.js";
+import type TracerSource from "./TracerSource.js";
 
 export class ChangePassword {
 
@@ -74,6 +75,8 @@ export class User {
     public sessions: LoginSession[];
 
     public authFactors: UserAuthFactor[];
+
+    public sources: TracerSource[];
 
     // [GraphService.toGraph]() {
     //     return {

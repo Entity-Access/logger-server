@@ -6,6 +6,11 @@ import { UserRole } from "./entities/UserRole.js";
 import LoginSession from "./entities/LoginSession.js";
 import UserAuthFactor from "./entities/UserAuthFactor.js";
 import Configuration from "./entities/Configuration.js";
+import Trace from "./entities/Trace.js";
+import TracerKey from "./entities/TracerKey.js";
+import TracerSource from "./entities/TracerSource.js";
+import Tag from "./entities/Tag.js";
+import TraceTag from "./entities/TraceTags.js";
 
 @RegisterScoped
 export default class AppDbContext extends EntityContext {
@@ -13,6 +18,16 @@ export default class AppDbContext extends EntityContext {
     public configurations = this.model.register(Configuration);
 
     public loginSessions = this.model.register(LoginSession);
+
+    public traces = this.model.register(Trace);
+
+    public traceKeys = this.model.register(TracerKey);
+
+    public traceSources = this.model.register(TracerSource);
+
+    public traceTags = this.model.register(TraceTag);
+
+    public tags = this.model.register(Tag);
 
     public users = this.model.register(User);
 

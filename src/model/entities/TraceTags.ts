@@ -21,6 +21,9 @@ export default class TraceTag {
     })
     public tagID: number;
 
+    @Column({ dataType: "Char", length: 400, nullable: true})
+    public value: string;
+
     public tag: Tag;
 
     public trace: Trace;
