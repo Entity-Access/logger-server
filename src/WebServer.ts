@@ -63,6 +63,7 @@ export default class WebServer {
 
     register() {
         ServiceCollection.register("Singleton", AppSocketService);
+        ServiceCollection.register("Scoped", AppDbContext);
         ServiceCollection.register("Singleton", AppDbContextEvents);
     }
 }
