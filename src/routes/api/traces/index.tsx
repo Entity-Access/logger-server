@@ -52,6 +52,7 @@ export default class extends Page {
 
         const ss = this.resolve(AppSocketService);
         ss.live.send(sourceID, { traceID });
+        ss.live.send("*", { traceID });
     }
 
 }
