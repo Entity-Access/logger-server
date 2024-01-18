@@ -9,7 +9,7 @@ export default class TraceEvents extends AuthenticatedEvents<Trace> {
             return query;
         }
         const user = this.sessionUser;
-        return query.where(user, (p) => (x) => x.source.userID === p.userID);
+        return query.where(user, (p) => (x) => x.source.sourceUsers.some((u) => u.userID === p.userID));
     }
 
 }
