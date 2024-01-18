@@ -5,6 +5,7 @@ import TimedCache from "@entity-access/entity-access/dist/common/cache/TimedCach
 import { globalServices } from "../../../globalServices.js";
 import { Prepare } from "@entity-access/server-pages/dist/decorators/Prepare.js";
 import AppSocketService from "../../../socket/SocketService.js";
+import Sql from "@entity-access/entity-access/dist/sql/Sql.js";
 
 const cache = new TimedCache<string,number>();
 
@@ -12,9 +13,10 @@ const getSourceID = (key: string) =>
     cache.getOrCreateAsync(key, async (k) => {
         const scope = globalServices.createScope();
         const db = scope.resolve(AppDbContext);
-        const user = await db.traceSources
-            .where({ k}, (p) => (x) => x.keySources.some((ks) => ks.key === p.k))
-            .first();
+        const q = db.sourceKeys
+            .where({ k}, (p) => (x) => x.key === p.k);
+        const user = await q.firstOrFail();
+        await q.update(void 0, (p) => (x) => ({ lastUsed: Sql.date.now()}));
         return user.sourceID;
     });
 

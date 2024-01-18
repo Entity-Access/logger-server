@@ -5,6 +5,7 @@ import ChangeEntry from "@entity-access/entity-access/dist/model/changes/ChangeE
 import Inject from "@entity-access/entity-access/dist/di/di.js";
 import AppDbContext from "../AppDbContext.js";
 import { ForeignKeyFilter } from "@entity-access/entity-access/dist/model/events/EntityEvents.js";
+import DateTime from "@entity-access/entity-access/dist/types/DateTime.js";
 
 export default class TraceSourceEvents extends AuthenticatedEvents<TraceSource> {
 
@@ -24,11 +25,20 @@ export default class TraceSourceEvents extends AuthenticatedEvents<TraceSource> 
 
     beforeInsert(entity: TraceSource, entry: ChangeEntry<TraceSource>) {
         entity.sourceUsers ??= [];
+        const dateCreated = DateTime.now;
+        entity.dateCreated = dateCreated;
         if (this.verify) {
             const { userID } = this.sessionUser;
             entity.sourceUsers.push(this.db.sourceUsers.add({
                 userID
             }));
+        }
+
+        entity.keySources ??= [];
+        if (!entity.keySources.length) {
+            entity.keySources.push(this.db.sourceKeys.add({
+                dateCreated
+            }))
         }
     }
 

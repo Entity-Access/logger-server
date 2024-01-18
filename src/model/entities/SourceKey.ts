@@ -3,6 +3,8 @@ import { RelateTo } from "@entity-access/entity-access/dist/decorators/Relate.js
 import Table from "@entity-access/entity-access/dist/decorators/Table.js";
 import TraceSource from "./TraceSource.js";
 import Index from "@entity-access/entity-access/dist/decorators/Index.js";
+import DateTime from "@entity-access/entity-access/dist/types/DateTime.js";
+import Sql from "@entity-access/entity-access/dist/sql/Sql.js";
 
 @Table("SourceKeys")
 @Index({
@@ -42,6 +44,12 @@ export default class SourceKey {
 
     @Column({ dataType: "Char", length: 400 })
     public key: string;
+
+    @Column({ dataType: "DateTime", default: () => Sql.date.now()})
+    public dateCreated: DateTime;
+
+    @Column({ dataType: "DateTime", nullable: true})
+    public lastUsed: DateTime;
 
     public source: TraceSource;
 
