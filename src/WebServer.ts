@@ -13,6 +13,7 @@ import AppSocketService from "./socket/SocketService.js";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import EntityContext from "@entity-access/entity-access/dist/model/EntityContext.js";
+import UserInfoProvider from "./services/UserInfoProvider.js";
 
 
 export default class WebServer {
@@ -64,6 +65,7 @@ export default class WebServer {
 
     register() {
         ServiceCollection.register("Scoped", AppDbContext);
+        ServiceCollection.register("Scoped", UserInfoProvider);
         ServiceCollection.register("Singleton", AppSocketService);
         ServiceCollection.register("Singleton", AppDbContextEvents);
     }
