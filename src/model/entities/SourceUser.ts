@@ -21,6 +21,10 @@ export default class SourceUser {
     })
     public sourceID: number;
 
+
+    @Column({ dataType: "Boolean", default: () => false })
+    public readonly: boolean;
+
     user: User;
 
     public source: TraceSource;
