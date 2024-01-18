@@ -24,6 +24,8 @@ import Tag from "./entities/Tag.js";
 import TagEvents from "./events/TagEvents.js";
 import TraceTag from "./entities/TraceTags.js";
 import TraceTagEvents from "./events/TraceTagEvents.js";
+import SourceUser from "./entities/SourceUser.js";
+import SourceUserEvents from "./events/SourceUserEvents.js";
 
 @RegisterSingleton
 export default class AppDbContextEvents extends EntityContextEvents {
@@ -36,6 +38,7 @@ export default class AppDbContextEvents extends EntityContextEvents {
         this.register(TraceName, TraceNameEvents);
         this.register(TraceSource, TraceSourceEvents);
         this.register(SourceKey, SourceKeyEvents);
+        this.register(SourceUser, SourceUserEvents);
         this.register(Tag, TagEvents);
         this.register(TraceTag, TraceTagEvents);
         this.register(User, UserEvents);
