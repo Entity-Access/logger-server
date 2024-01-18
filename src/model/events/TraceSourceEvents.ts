@@ -15,6 +15,9 @@ export default class TraceSourceEvents extends AuthenticatedEvents<TraceSource> 
         if (!this.verify) {
             return query;
         }
+        if (this.sessionUser.isAdmin) {
+            return query;
+        }
         const user = this.sessionUser;
         return query.where(user, (p) => (x) => x.sourceUsers.some((u) => u.userID === p.userID));
     }
