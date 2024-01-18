@@ -33,7 +33,10 @@ export default class SourceKey {
     @Column({ dataType: "BigInt"})
     @RelateTo(TraceSource, {
         property: (x) => x.source,
-        inverseProperty: (x) => x.keySources
+        inverseProperty: (x) => x.keySources,
+        foreignKeyConstraint: {
+            cascade: "delete"
+        }
     })
     public sourceID: number;
 

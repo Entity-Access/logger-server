@@ -16,7 +16,10 @@ export default class Trace {
     @Column({ dataType: "BigInt"})
     @RelateTo(TraceSource, {
         property: (x) => x.source,
-        inverseProperty: (x) => x.traces
+        inverseProperty: (x) => x.traces,
+        foreignKeyConstraint: {
+            cascade: "restrict"
+        }
     })
     public sourceID: number;
 
