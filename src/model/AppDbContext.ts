@@ -12,6 +12,7 @@ import TraceSource from "./entities/TraceSource.js";
 import Tag from "./entities/Tag.js";
 import TraceTag from "./entities/TraceTags.js";
 import { TraceName } from "./entities/TraceName.js";
+import SourceUser from "./entities/SourceUser.js";
 
 @RegisterScoped
 export default class AppDbContext extends EntityContext {
@@ -24,7 +25,9 @@ export default class AppDbContext extends EntityContext {
 
     public traceNames = this.model.register(TraceName);
 
-    public traceKeys = this.model.register(SourceKey);
+    public sourceKeys = this.model.register(SourceKey);
+
+    public sourceUsers = this.model.register(SourceUser);
 
     public traceSources = this.model.register(TraceSource);
 
