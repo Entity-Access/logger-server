@@ -12,6 +12,7 @@ import SocketService from "@entity-access/server-pages/dist/socket/SocketService
 import AppSocketService from "./socket/SocketService.js";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import EntityContext from "@entity-access/entity-access/dist/model/EntityContext.js";
 
 
 export default class WebServer {
@@ -62,8 +63,8 @@ export default class WebServer {
     }
 
     register() {
-        ServiceCollection.register("Singleton", AppSocketService);
         ServiceCollection.register("Scoped", AppDbContext);
+        ServiceCollection.register("Singleton", AppSocketService);
         ServiceCollection.register("Singleton", AppDbContextEvents);
     }
 }
