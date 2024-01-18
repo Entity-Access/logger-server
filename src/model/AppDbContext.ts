@@ -7,11 +7,11 @@ import LoginSession from "./entities/LoginSession.js";
 import UserAuthFactor from "./entities/UserAuthFactor.js";
 import Configuration from "./entities/Configuration.js";
 import Trace from "./entities/Trace.js";
-import TracerKey from "./entities/TracerKey.js";
-import TracerSource from "./entities/TracerSource.js";
+import SourceKey from "./entities/SourceKey.js";
+import TraceSource from "./entities/TraceSource.js";
 import Tag from "./entities/Tag.js";
 import TraceTag from "./entities/TraceTags.js";
-import { TracerName } from "./entities/TracerName.js";
+import { TraceName } from "./entities/TraceName.js";
 
 @RegisterScoped
 export default class AppDbContext extends EntityContext {
@@ -22,11 +22,11 @@ export default class AppDbContext extends EntityContext {
 
     public traces = this.model.register(Trace);
 
-    public traceNames = this.model.register(TracerName);
+    public traceNames = this.model.register(TraceName);
 
-    public traceKeys = this.model.register(TracerKey);
+    public traceKeys = this.model.register(SourceKey);
 
-    public traceSources = this.model.register(TracerSource);
+    public traceSources = this.model.register(TraceSource);
 
     public traceTags = this.model.register(TraceTag);
 

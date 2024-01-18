@@ -12,6 +12,18 @@ import { UserRoleType } from "./entities/UserRoleType.js";
 import UserRoleTypeEvents from "./events/UserRoleTypeEvents.js";
 import Configuration from "./entities/Configuration.js";
 import ConfigurationEvents from "./events/ConfigurationEvents.js";
+import Trace from "./entities/Trace.js";
+import TraceEvents from "./events/TraceEvents.js";
+import { TraceName } from "./entities/TraceName.js";
+import TraceNameEvents from "./events/TraceNameEvents.js";
+import SourceKey from "./entities/SourceKey.js";
+import SourceKeyEvents from "./events/SourceKeyEvents.js";
+import TraceSource from "./entities/TraceSource.js";
+import TraceSourceEvents from "./events/TraceSourceEvents.js";
+import Tag from "./entities/Tag.js";
+import TagEvents from "./events/TagEvents.js";
+import TraceTag from "./entities/TraceTags.js";
+import TraceTagEvents from "./events/TraceTagEvents.js";
 
 @RegisterSingleton
 export default class AppDbContextEvents extends EntityContextEvents {
@@ -20,6 +32,12 @@ export default class AppDbContextEvents extends EntityContextEvents {
         super();
         this.register(Configuration, ConfigurationEvents);
         this.register(LoginSession, LoginSessionEvents);
+        this.register(Trace, TraceEvents);
+        this.register(TraceName, TraceNameEvents);
+        this.register(TraceSource, TraceSourceEvents);
+        this.register(SourceKey, SourceKeyEvents);
+        this.register(Tag, TagEvents);
+        this.register(TraceTag, TraceTagEvents);
         this.register(User, UserEvents);
         this.register(UserRole, UserRoleEvents);
         this.register(UserRoleType, UserRoleTypeEvents);

@@ -3,9 +3,9 @@ import Table from "@entity-access/entity-access/dist/decorators/Table.js";
 import Column from "@entity-access/entity-access/dist/decorators/Column.js";
 import type TraceTag from "./TraceTags.js";
 import { RelateTo } from "@entity-access/entity-access/dist/decorators/Relate.js";
-import { TracerName } from "./TracerName.js";
+import { TraceName } from "./TraceName.js";
 import Sql from "@entity-access/entity-access/dist/sql/Sql.js";
-import TracerSource from "./TracerSource.js";
+import TraceSource from "./TraceSource.js";
 
 @Table("Traces")
 export default class Trace {
@@ -14,7 +14,7 @@ export default class Trace {
     public traceID: number;
 
     @Column({ dataType: "BigInt"})
-    @RelateTo(TracerSource, {
+    @RelateTo(TraceSource, {
         property: (x) => x.source,
         inverseProperty: (x) => x.traces
     })
@@ -27,28 +27,28 @@ export default class Trace {
     public type: string;
 
     @Column({ dataType: "BigInt", nullable: true })
-    @RelateTo(TracerName, {
+    @RelateTo(TraceName, {
         property: (x) => x.server,
         inverseProperty: (x) => x.serverTraces
     })
     public serverID: number;
 
     @Column({ dataType: "BigInt", nullable: true })
-    @RelateTo(TracerName, {
+    @RelateTo(TraceName, {
         property: (x) => x.app,
         inverseProperty: (x) => x.appTraces
     })
     public appID: number;
 
     @Column({ dataType: "BigInt", nullable: true })
-    @RelateTo(TracerName, {
+    @RelateTo(TraceName, {
         property: (x) => x.session,
         inverseProperty: (x) => x.sessionTraces
     })
     public sessionID: number;
 
     @Column({ dataType: "BigInt", nullable: true })
-    @RelateTo(TracerName, {
+    @RelateTo(TraceName, {
         property: (x) => x.host,
         inverseProperty: (x) => x.hostTraces
     })
@@ -61,7 +61,7 @@ export default class Trace {
     public ipAddress: string;
 
     @Column({ dataType: "BigInt", nullable: true })
-    @RelateTo(TracerName, {
+    @RelateTo(TraceName, {
         property: (x) => x.user,
         inverseProperty: (x) => x.userTraces
     })
@@ -72,17 +72,17 @@ export default class Trace {
 
     public traceTags: TraceTag[];
 
-    public server: TracerName;
+    public server: TraceName;
 
-    public app: TracerName;
+    public app: TraceName;
 
-    public session: TracerName;
+    public session: TraceName;
 
-    public host: TracerName;
+    public host: TraceName;
 
-    public user: TracerName;
+    public user: TraceName;
 
-    public source: TracerSource;
+    public source: TraceSource;
 
 
 }

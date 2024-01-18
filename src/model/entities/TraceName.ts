@@ -3,16 +3,16 @@ import Index from "@entity-access/entity-access/dist/decorators/Index.js";
 import Table from "@entity-access/entity-access/dist/decorators/Table.js";
 import type Trace from "./Trace.js";
 
-@Table("TracerNames")
+@Table("TraceNames")
 @Index({
-    name: "IX_TracerNames_Unique",
+    name: "IX_TraceNames_Unique",
     unique: true,
     columns: [
         { name: (x) => x.type, descending: false },
         { name: (x) => x.name, descending: false }
     ]
 })
-export class TracerName {
+export class TraceName {
 
     @Column({ dataType: "BigInt", key: true, generated: "identity"})
     public nameID: number;

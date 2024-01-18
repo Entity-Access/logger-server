@@ -1,15 +1,17 @@
 import { IEntityQuery } from "@entity-access/entity-access/dist/model/IFilterWithParameter.js";
-import TracerSource from "../entities/TracerSource.js";
+import TraceSource from "../entities/TraceSource.js";
 import AuthenticatedEvents from "./AuthenticatedEvents.js";
 
-export default class TraceSourceEvents extends AuthenticatedEvents<TracerSource> {
+export default class TraceSourceEvents extends AuthenticatedEvents<TraceSource> {
 
-    filter(query: IEntityQuery<TracerSource>) {
+    filter(query: IEntityQuery<TraceSource>) {
         if (!this.verify) {
             return query;
         }
         const user = this.sessionUser;
-        return query.where(user, (p) => (x) => x.userID === p.userID);
+        return query.where(user, (p) => (x) => x.sourceUsers.some((u) => u.userID === p.userID));
     }
+
+    
 
 }
