@@ -25,7 +25,7 @@ export default class extends Page {
 
     async run() {
 
-        const key = this.request.headers["x-key"];
+        const key = this.request.headers["x-key"] || this.childPath[0];
         if (!key) {
             return Content.json({}, 401);
         }
