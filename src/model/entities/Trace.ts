@@ -73,6 +73,9 @@ export default class Trace {
     @Column({ dataType: "Char", nullable: true })
     public json: string;
 
+    @Column({ dataType: "Boolean", default: () => true})
+    public pending: boolean;
+
     public traceTags: TraceTag[];
 
     public server: TraceName;
