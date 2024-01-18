@@ -19,9 +19,8 @@ export default class UserSessionProvider extends USP {
             userID,
             sessionID,
             userName: session.user.userName,
-            roles: [],
-            expiry: session.expiry
-            // roles: user.roles?.map((r) => r.roleName)
+            expiry: session.expiry,
+            roles: session.user.roles?.map((r) => r.roleName),
         };
     }
 
