@@ -1,5 +1,4 @@
 import Inject, { RegisterScoped } from "@entity-access/entity-access/dist/di/di.js";
-import SessionUser from "@entity-access/server-pages/dist/core/SessionUser.js";
 import { IAuthCookie } from "@entity-access/server-pages/dist/services/TokenService.js";
 import USP from "@entity-access/server-pages/dist/services/UserSessionProvider.js"
 import AppDbContext from "../model/AppDbContext.js";

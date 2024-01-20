@@ -8,7 +8,7 @@ import DateTime from "@entity-access/entity-access/dist/types/DateTime.js";
 import { IEntityQuery } from "@entity-access/entity-access/dist/model/IFilterWithParameter.js";
 import ErrorModel from "@entity-access/entity-access/dist/common/ErrorModel.js";
 import AppDbContext from "../AppDbContext.js";
-import SessionUser from "@entity-access/server-pages/dist/core/SessionUser.js";
+import { SessionUser } from "@entity-access/server-pages/dist/core/SessionUser.js";
 import { ChangePassword } from "../entities/User.js";
 import MultiAuthFactorService from "../../services/MultiAuthFactorService.js";
 
