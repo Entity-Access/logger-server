@@ -4,6 +4,7 @@ import seedUI from "./ui/seed-ui.js";
 import { globalServices } from "../globalServices.js";
 import AppDbContext from "../model/AppDbContext.js";
 import DBConfig from "../model/DBConfig.js";
+import AppWorkflowContext from "../model/AppWorkflowContext.js";
 
 export default async function seed() {
 
@@ -20,6 +21,8 @@ export default async function seed() {
         await seedAdminUser(scope, context);
         const configService = scope.resolve(DBConfig);
         await seedUI(configService);
+
+        await globalServices.resolve(AppWorkflowContext).storage.seed();
         // await seedTags(context);
     } finally {
         scope.dispose();

@@ -6,8 +6,16 @@ import { RelateTo } from "@entity-access/entity-access/dist/decorators/Relate.js
 import { TraceName } from "./TraceName.js";
 import Sql from "@entity-access/entity-access/dist/sql/Sql.js";
 import TraceSource from "./TraceSource.js";
+import Index from "@entity-access/entity-access/dist/decorators/Index.js";
 
 @Table("Traces")
+@Index({
+    name: "IX_Traces_Pending",
+    columns: [
+        { name: (x) => x.traceID, descending: false },
+    ],
+    filter: (x) => x.pending === true
+})
 export default class Trace {
 
     @Column({ dataType: "BigInt", generated: "identity", key: true })

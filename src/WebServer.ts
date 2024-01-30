@@ -2,7 +2,7 @@ import { BaseDriver } from "@entity-access/entity-access/dist/drivers/base/BaseD
 import { ServiceCollection } from "@entity-access/entity-access/dist/di/di.js";
 import ServerPages from "@entity-access/server-pages/dist/ServerPages.js";
 import { globalServices } from "./globalServices.js";
-import AppWorkflowContext from "./model/WorkflowContext.js";
+import AppWorkflowContext from "./model/AppWorkflowContext.js";
 import AppDbContextEvents from "./model/AppDbContextEvents.js";
 import AppDbContext from "./model/AppDbContext.js";
 import PostgreSqlDriver from "@entity-access/entity-access/dist/drivers/postgres/PostgreSqlDriver.js";
@@ -17,6 +17,12 @@ import UserInfoProvider from "./services/UserInfoProvider.js";
 
 
 export default class WebServer {
+
+    public runWorkflows() {
+        globalServices.resolve(AppWorkflowContext).start({
+            taskGroups: [ "default", "sync", "background", "daily", "batch"]
+        }).catch((error) => console.error(error));
+    }
 
     async create(seedDb = false, runServer = false) {
 
@@ -61,6 +67,8 @@ export default class WebServer {
                 eabHmac: globalEnv.ssl.acme.eabHmac
             }
         });
+
+        await this.runWorkflows();
     }
 
     register() {
