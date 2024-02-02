@@ -1,6 +1,6 @@
 {
   "name": "@entity-access/tracer-server",
-  "version": "1.0.46",
+  "version": "1.0.47",
   "description": "Simple Logger Server with Entity Access",
   "main": "index.js",
   "type": "module",
