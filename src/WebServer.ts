@@ -24,7 +24,7 @@ export default class WebServer {
         }).catch((error) => console.error(error));
     }
 
-    async create(seedDb = false, runServer = false) {
+    async create(seedDb = false, runServer = true) {
 
         const dbServer = (process.env["TRACER_DB_SERVER"] ?? "postgres").toLowerCase();
         if (dbServer !== "postgres") {
@@ -45,9 +45,10 @@ export default class WebServer {
 
         if (seedDb) {
             await seed();
-            if (!runServer) {
-                return;
-            }
+        }
+
+        if (!runServer) {
+            return;
         }
 
         const server = ServerPages.create(globalServices);
@@ -72,9 +73,9 @@ export default class WebServer {
     }
 
     register() {
-        ServiceCollection.register("Scoped", AppDbContext);
+        ServiceCollection.registerMultiple("Scoped",[AppDbContext, EntityContext], AppDbContext);
         ServiceCollection.register("Scoped", UserInfoProvider);
-        ServiceCollection.register("Singleton", AppSocketService);
+        ServiceCollection.registerMultiple("Singleton", [AppSocketService, SocketService], AppSocketService);
         ServiceCollection.register("Singleton", AppDbContextEvents);
     }
 }

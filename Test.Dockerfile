@@ -10,7 +10,7 @@ COPY package*.json ./
 COPY dist ./dist
 RUN npm install --omit=dev
 ENV HOST 0.0.0.0
-ENV PORT 80
+ENV PORT 80 443 9229
 ENV SELF_HOST true
 EXPOSE 80
 ENTRYPOINT ["/sbin/tini", "--", "npm", "run", "debug"]

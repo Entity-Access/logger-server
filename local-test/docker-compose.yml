@@ -10,8 +10,9 @@ services:
       - 5436:5432
     networks:
       - app_network
-  node-hello:
+  node-app:
     image: tracer-local-test
+    container_name: tracer_server
     depends_on:
       - postgresdb
     build:
@@ -33,6 +34,7 @@ services:
       - app_network
     ports:
       - 80:80
+      - 443:443
       - 9229:9229
 networks:
   app_network:
