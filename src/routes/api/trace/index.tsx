@@ -41,7 +41,6 @@ export default class extends Page {
 
         const { traceID } = await db.traces.saveDirect({
             mode: "insert",
-            keys: {},
             changes: {
                 sourceID,
                 type,
