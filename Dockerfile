@@ -2,7 +2,7 @@
 FROM node:20-alpine3.19
 RUN apk add --no-cache tini
 VOLUME /var/lib/clamav
-VOLUME /app/certs
+VOLUME /data
 WORKDIR /app
 COPY index.js ./
 COPY src ./src

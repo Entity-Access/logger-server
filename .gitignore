@@ -128,7 +128,4 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-data/certs/keys/private.key
-data/certs/localhost/key.pem
-data/certs/self-signed/cert.crt
-data/certs/self-signed/key.pem
+data/
