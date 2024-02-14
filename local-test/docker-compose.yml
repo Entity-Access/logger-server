@@ -37,7 +37,7 @@ services:
       - 443:443
       - 9229:9229
     volumes:
-      -./data:/data
+      - ../data:/data
 networks:
   app_network:
     driver: bridge
