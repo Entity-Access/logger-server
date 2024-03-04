@@ -6,11 +6,12 @@ import CryptoService from "../../services/CryptoService.js";
 import EntityAccessError from "@entity-access/entity-access/dist/common/EntityAccessError.js";
 import DateTime from "@entity-access/entity-access/dist/types/DateTime.js";
 import { IEntityQuery } from "@entity-access/entity-access/dist/model/IFilterWithParameter.js";
-import ErrorModel from "@entity-access/entity-access/dist/common/ErrorModel.js";
 import AppDbContext from "../AppDbContext.js";
 import { SessionUser } from "@entity-access/server-pages/dist/core/SessionUser.js";
 import { ChangePassword } from "../entities/User.js";
 import MultiAuthFactorService from "../../services/MultiAuthFactorService.js";
+import External from "@entity-access/server-pages/dist/decorators/External.js";
+
 
 export default class LoginSessionEvents extends EntityEvents<LoginSession> {
 
@@ -26,6 +27,7 @@ export default class LoginSessionEvents extends EntityEvents<LoginSession> {
     @Inject
     private multiAuthFactorService: MultiAuthFactorService;
 
+    @External
     currentUser() {
         const { sessionID = 0, userID = 0 } = this.sessionUser;
         return this.db.loginSessions
