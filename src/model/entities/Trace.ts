@@ -58,6 +58,13 @@ export default class Trace {
     })
     public sessionID: number;
 
+    @Column({ dataType: "BigInt", nullable: true})
+    @RelateTo(TraceName, {
+        property: (x) => x.request,
+        inverseProperty: (x) => x.requestTraces
+    })
+    public requestID: number;
+
     @Column({ dataType: "BigInt", nullable: true })
     @RelateTo(TraceName, {
         property: (x) => x.host,
@@ -97,6 +104,8 @@ export default class Trace {
     public user: TraceName;
 
     public source: TraceSource;
+
+    public request: TraceName;
 
 
 }

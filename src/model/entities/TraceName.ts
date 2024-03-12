@@ -28,6 +28,7 @@ export class TraceName {
     sessionTraces: Trace[];
     hostTraces: Trace[];
     userTraces: Trace[];
+    requestTraces: Trace[];
 
 
 }
