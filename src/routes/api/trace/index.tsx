@@ -30,7 +30,7 @@ export default class extends Page {
             return Content.json({}, 401);
         }
 
-        const sourceID = await getSourceID(key);
+        const sourceID = await getSourceID(key as any);
 
         const db = this.resolve(AppDbContext);
         db.raiseEvents = false;
@@ -39,14 +39,11 @@ export default class extends Page {
 
         const { type = "log" } = this.body;
 
-        const { traceID } = await db.traces.saveDirect({
-            mode: "insert",
-            changes: {
-                sourceID,
-                type,
-                ipAddress,
-                json: JSON.stringify(this.body)
-            }
+        const { traceID } = await db.traces.statements.insert({
+            sourceID,
+            type,
+            ipAddress,
+            json: JSON.stringify(this.body)
         });
 
         const ss = this.resolve(AppSocketService);

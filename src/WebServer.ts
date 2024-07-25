@@ -60,6 +60,7 @@ export default class WebServer {
             createSocketService: true,
             port: 443,
             protocol: "http2",
+            trustProxy: false,
             acmeOptions: {
                 mode: globalEnv.isTestMode ? "self-signed" : globalEnv.ssl.acme.mode,
                 emailAddress: globalEnv.ssl.emailAddress,
