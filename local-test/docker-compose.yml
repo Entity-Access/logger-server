@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   postgresdb:
-    image: postgres:16.1-alpine3.19
+    image: postgres:alpine
     container_name: pg_tracer_server
     restart: unless-stopped
     environment:
